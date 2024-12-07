@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Monto en Tarjeta de Crédito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #444;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #003d82;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #0056b3;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predicción de Monto en Tarjeta de Crédito</h1>
+        <form action="/predecir" method="post">
+            <label for="FacCCPC_T12">FacCCPC_T12 (Monto facturado en compras en cuotas precio contado):</label>
+            <input type="number" step="any" name="FacCCPC_T12" required>
+            
+            <label for="FacCI_T12">FacCI_T12 (Monto facturado en compras internacionales):</label>
+            <input type="number" step="any" name="FacCI_T12" required>
+            
+            <label for="FacCN_T12">FacCN_T12 (Monto facturado en compras nacionales):</label>
+            <input type="number" step="any" name="FacCN_T12" required>
+            
+            <label for="PagoNac_T12">PagoNac_T12 (Monto de pagos de deuda nacional):</label>
+            <input type="number" step="any" name="PagoNac_T12" required>
+            
+            <label for="UsoLI_T12">UsoLI_T12 (Monto de deuda en línea internacional):</label>
+            <input type="number" step="any" name="UsoLI_T12" required>
+            
+            <label for="Txs_T12">Txs_T12 (Número de transacciones realizadas):</label>
+            <input type="number" step="any" name="Txs_T12" required>
+            
+            <label for="FlgAct_T12">FlgAct_T12 (Indicador de actividad):</label>
+            <input type="number" step="any" name="FlgAct_T12" required>
+            
+            <button type="submit">Predecir</button>
+        </form>
+
+        {% if resultado is not none %}
+            <div class="result">
+                <h2>Monto facturado predicho:</h2>
+                <p>{{ resultado }}</p>
+            </div>
+        {% endif %}
+    </div>
+    <footer>
+        &copy; 2024 - Predicción de Tarjetas de Crédito
+    </footer>
+</body>
+</html>
